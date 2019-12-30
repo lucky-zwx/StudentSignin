@@ -147,7 +147,7 @@ public class Main {
             String class_ = sheet.getRow(i).getCell(3).getStringCellValue();
             String data_ = sheet.getRow(i).getCell(4).getStringCellValue();
             if (id.equals(stuid) && class_.equals(classname) && data_.equals(date)) {
-                System.out.println("该学生是否请假：");
+                System.out.println("该学生是否早退：");
                 String zt = input.nextLine();
                 sheet.getRow(i).createCell(8).setCellValue(zt);
                 Writetoexcel();
@@ -163,7 +163,10 @@ public class Main {
         System.out.println("请输入学生学号：");
         String stuid = input.nextLine();
         boolean searched = false;
-        for (int i = 1; i < sheet.getPhysicalNumberOfRows(); i++) {
+        for (int i = 1; i < sheet.getPhysicalNumberOfRows()+1; i++) {
+            if (sheet.getRow(i) == null){
+                continue;
+            }
             String id = sheet.getRow(i).getCell(0).getStringCellValue();
             if (id.equals(stuid)) {
                 searched = true;
@@ -192,7 +195,10 @@ public class Main {
         System.out.println("请输入日期：格式：(2019-12-28)");
         String date = input.nextLine();
         boolean searched = false;
-        for (int i = 1; i < sheet.getPhysicalNumberOfRows(); i++) {
+        for (int i = 1; i < sheet.getPhysicalNumberOfRows()+1; i++) {
+            if (sheet.getRow(i) == null){
+                continue;
+            }
             String id = sheet.getRow(i).getCell(0).getStringCellValue();
             String class_ = sheet.getRow(i).getCell(3).getStringCellValue();
             String data_ = sheet.getRow(i).getCell(4).getStringCellValue();
@@ -200,6 +206,7 @@ public class Main {
                 searched = true;
                 sheet.removeRow(sheet.getRow(i));
                 Writetoexcel();
+                return;
             }
         }
         if (!searched){
@@ -216,7 +223,10 @@ public class Main {
         System.out.println("请输入日期：格式：(2019-12-28)");
         String date = input.nextLine();
         boolean searched = false;
-        for (int i = 1; i < sheet.getPhysicalNumberOfRows(); i++) {
+        for (int i = 1; i < sheet.getPhysicalNumberOfRows()+1; i++) {
+            if (sheet.getRow(i) == null){
+                continue;
+            }
             String id = sheet.getRow(i).getCell(0).getStringCellValue();
             String class_ = sheet.getRow(i).getCell(3).getStringCellValue();
             String data_ = sheet.getRow(i).getCell(4).getStringCellValue();
